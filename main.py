@@ -5,13 +5,13 @@ USERNAME = 'your_username'
 PASSWORD = 'your_password'
 
 def main():
-    st.title('Secure Streamlit App')
+    st.title('VODAFONE CLASSIFICATION AND PREDICTING CUSTOMER CHURN')
 
     # Add login section
-    username_input = st.sidebar.text_input('Username')
-    password_input = st.sidebar.text_input('Password', type='password')
+    username_input = st.text_input('Username')
+    password_input = st.text_input('Password', type='password')
 
-    if st.sidebar.button('Login'):
+    if st.button('Login'):
         if username_input == USERNAME and password_input == PASSWORD:
             st.success('Logged in as {}'.format(username_input))
             # Display the main app content here
