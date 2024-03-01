@@ -1,0 +1,19 @@
+credentials:
+  usernames:
+    Khadija:
+      email: Khadija@gmail.com
+      logged_in: False # Will be managed automatically
+      name: Khadija
+      password: '123' # Make sure to enclose in quotes
+    Angel:
+      email: Angel@gmail.com
+      logged_in: False # Will be managed automatically
+      name: Angel
+      password: '123' # Make sure to enclose in quotes
+cookie:
+  expiry_days: 30
+  key: some_signature_key # Must be string
+  name: some_cookie_name
+preauthorized:
+  emails:
+  - melsby@gmail.com
