@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 
 st.set_page_config(
     page_title='Predict Page',
@@ -36,7 +40,6 @@ def select_model():
         encoder = load_encoder()
     with column2:
         pass
-    
         
     return selected_model, encoder
 
@@ -44,16 +47,42 @@ def make_prediction(model, encoder):
     df = st.session_state['df']
     prediction = model.predict(df)
     st.session_state['prediction'] = prediction
+    
+    if isinstance(model, LogisticRegression):
+        model_name = "Logistic Regression"
+    elif isinstance(model, RandomForestClassifier):
+        model_name = "Random Forest"
+    elif isinstance(model, Pipeline):
+        # Check if the pipeline contains Logistic Regression or Random Forest
+        pipeline_steps = model.named_steps.values()
+        if any(isinstance(step, LogisticRegression) for step in pipeline_steps):
+            model_name = "Logistic Regression"
+        elif any(isinstance(step, RandomForestClassifier) for step in pipeline_steps):
+            model_name = "Random Forest"
+        else:
+            model_name = "Unknown Model: Pipeline"
+    else:
+        model_name = "Unknown Model: " + str(type(model))
+        print("Unknown Model: ", type(model))
+        
+    # Save prediction to history CSV file
+    save_prediction_to_csv(df, prediction, model_name)
     return prediction
+
+
+
 
 def predict():
     if 'prediction' not in st.session_state:
         st.session_state['prediction'] = None
-        
+    
     # Dictionary to store input features
     model, encoder = select_model()
+    st.session_state['model_name'] = model.__class__.__name__  # Store the selected model name
     
     with st.form('input feature'):
+        # Form inputs...
+
         col1, col2, col3 = st.columns(3)
         
         with col1:
@@ -111,7 +140,42 @@ def predict():
         st.session_state['df'] = input_features
         st.form_submit_button('Submit', on_click=make_prediction, kwargs=dict(model=model, encoder=encoder))
    
-# Call the data function directly
+def save_prediction_to_csv(df, prediction, model_name):
+    churn_label = "Churn" if prediction[0] == 1 else "Not Churn"
+    
+    # Concatenate input features, model name, and churn label
+    prediction_df = pd.DataFrame({
+        'Gender': df['gender'],
+        'SeniorCitizen': df['SeniorCitizen'],
+        'Partner': df['Partner'],
+        'Dependents': df['Dependents'],
+        'Tenure': df['tenure'],
+        'PhoneService': df['PhoneService'],
+        'MultipleLines': df['MultipleLines'],
+        'InternetService': df['InternetService'],
+        'OnlineSecurity': df['OnlineSecurity'],
+        'OnlineBackup': df['OnlineBackup'],
+        'DeviceProtection': df['DeviceProtection'],
+        'TechSupport': df['TechSupport'],
+        'StreamingTV': df['StreamingTV'],
+        'StreamingMovies': df['StreamingMovies'],
+        'Contract': df['Contract'],
+        'PaperlessBilling': df['PaperlessBilling'],
+        'PaymentMethod': df['PaymentMethod'],
+        'MonthlyCharges': df['MonthlyCharges'],
+        'TotalCharges': df['TotalCharges'],
+        'Model': model_name,
+        'Churn': churn_label
+    })
+    
+    # Save to CSV file
+    prediction_df.to_csv('data/history.csv', mode='a', header=not os.path.exists('data/history.csv'), index=False)
+
+
+
+
+
+# Call the predict function directly
 if __name__ == '__main__':
     st.title('Make a Prediction')
     predict()
