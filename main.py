@@ -1,22 +1,27 @@
 import streamlit as st
+import streamlit_authenticator as stauth
 
-# Define username and password
-USERNAME = 'your_username'
-PASSWORD = 'your_password'
+import yaml
+from yaml.loader import SafeLoader
 
-def main():
-    st.title('VODAFONE CLASSIFICATION AND PREDICTING CUSTOMER CHURN')
-
-    # Add login section
-    username_input = st.text_input('Username')
-    password_input = st.text_input('Password', type='password')
-
-    if st.button('Login'):
-        if username_input == USERNAME and password_input == PASSWORD:
-            st.success('Logged in as {}'.format(username_input))
-            # Display the main app content here
-        else:
-            st.error('Invalid username or password. Please try again.')
-
-if __name__ == '__main__':
-    main()
+# Load YAML configuration
+with open(r'C:/Users/Sami/OneDrive/GitHUB/P4-Embedding-Machine-Learning-Models-in-GUIs/config.yaml') as file:
+    config = yaml.safe_load(file)
+# Initialize authenticator
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+# Perform authentication
+authenticator.login()
+if st.session_state["authentication_status"]:
+    authenticator.logout()
+    st.write(f'Welcome *{st.session_state["name"]}*')
+    st.title('Some content')
+elif st.session_state["authentication_status"] is False:
+    st.error('Username/password is incorrect')
+elif st.session_state["authentication_status"] is None:
+    st.warning('Please enter your username and password')
