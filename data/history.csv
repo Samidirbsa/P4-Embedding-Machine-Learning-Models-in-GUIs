@@ -1,0 +1,47 @@
+Gender,SeniorCitizen,Partner,Dependents,Tenure,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges,Model,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,6,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,6,0,Logistic Regression,Not Churn
+Male,Yes,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,6,0,Logistic Regression,Not Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,6,0,Logistic Regression,Not Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,6,4,Logistic Regression,Not Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,60,4,Logistic Regression,Not Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,200,6,Logistic Regression,Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,206,6,Logistic Regression,Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,212,6,Logistic Regression,Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,212,8,Logistic Regression,Churn
+Male,No,Yes,No,3,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,212,14,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn

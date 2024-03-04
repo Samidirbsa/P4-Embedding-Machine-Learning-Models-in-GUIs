@@ -46,7 +46,10 @@ def select_model():
 def make_prediction(model, encoder):
     df = st.session_state['df']
     prediction = model.predict(df)
+    probabilities = model.predict_proba(df)
+    
     st.session_state['prediction'] = prediction
+    st.session_state['probability'] = probabilities
     
     if isinstance(model, LogisticRegression):
         model_name = "Logistic Regression"
@@ -68,9 +71,6 @@ def make_prediction(model, encoder):
     # Save prediction to history CSV file
     save_prediction_to_csv(df, prediction, model_name)
     return prediction
-
-
-
 
 def predict():
     if 'prediction' not in st.session_state:
@@ -172,17 +172,28 @@ def save_prediction_to_csv(df, prediction, model_name):
     prediction_df.to_csv('data/history.csv', mode='a', header=not os.path.exists('data/history.csv'), index=False)
 
 
-
-
-
-# Call the predict function directly
+# Call the data function directly
 if __name__ == '__main__':
     st.title('Make a Prediction')
     predict()
 
-prediction = st.session_state['prediction']
-if prediction is not None:
-    if prediction[0] == 1:
-        st.write("The customer will churn.")
+    # Ensure 'prediction' and 'probability' are initialized in session_state
+    if 'prediction' not in st.session_state:
+        st.session_state['prediction'] = None
+
+    if 'probability' not in st.session_state:
+        st.session_state['probability'] = None
+
+    # Retrieve 'prediction' and 'probability' from session_state
+    prediction = st.session_state['prediction']
+    probability = st.session_state['probability']
+
+    # Display prediction and probability
+    if prediction is None:
+        st.markdown("### Prediction will show here")
+    elif prediction == "Yes":
+        probability_of_yes = probability[0][1] * 100
+        st.markdown(f"### The employee will leave the company with a probability of {probability_of_yes:.2f}%")
     else:
-        st.write("The customer will not churn.")
+        probability_of_no = probability[0][0] * 100
+        st.markdown(f"### Employee will not leave with a probability of {probability_of_no:.2f}%")
