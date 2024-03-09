@@ -1,0 +1,11 @@
+Gender,SeniorCitizen,Partner,Dependents,Tenure,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges,Model,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Random Forest,Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn
+Male,Yes,Yes,Yes,0,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,0,0,Logistic Regression,Not Churn

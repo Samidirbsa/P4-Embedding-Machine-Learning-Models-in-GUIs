@@ -1,6 +1,6 @@
 import streamlit as st
-import pandas as pd
 import pyodbc
+import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -64,49 +64,7 @@ def display_visualizations(data):
         tenure_plot.set_ylabel('Frequency')
         st.pyplot(fig=tenure_plot.figure)
 
-    # Chart for Contract
-    with col1:
-        st.write("### Contract Distribution")
-        contract_counts = data['Contract'].value_counts()
-        plt.figure(figsize=(10, 6))
-        contract_plot = sns.barplot(x=contract_counts.index, y=contract_counts.values, palette='pastel')
-        contract_plot.set_title('Contract Distribution')
-        contract_plot.set_xlabel('Contract Type')
-        contract_plot.set_ylabel('Count')
-        st.pyplot(fig=contract_plot.figure)
-
-    # Chart for Payment Method
-    with col2:
-        st.write("### Payment Method Distribution")
-        payment_counts = data['PaymentMethod'].value_counts()
-        plt.figure(figsize=(10, 6))
-        payment_plot = sns.barplot(x=payment_counts.index, y=payment_counts.values, palette='pastel')
-        payment_plot.set_title('Payment Method Distribution')
-        payment_plot.set_xlabel('Payment Method')
-        payment_plot.set_ylabel('Count')
-        payment_plot.set_xticklabels(payment_plot.get_xticklabels(), rotation=45, horizontalalignment='right')
-        st.pyplot(fig=payment_plot.figure)
-
-    # Chart for Monthly Charges
-    with col1:
-        st.write("### Monthly Charges Distribution")
-        plt.figure(figsize=(10, 6))
-        monthly_charges_plot = sns.histplot(data['MonthlyCharges'], bins=20, kde=True, color='lightgreen')
-        monthly_charges_plot.set_title('Monthly Charges Distribution')
-        monthly_charges_plot.set_xlabel('Monthly Charges')
-        monthly_charges_plot.set_ylabel('Frequency')
-        st.pyplot(fig=monthly_charges_plot.figure)
-
-    # Chart for Total Charges
-    with col2:
-        st.write("### Total Charges Distribution")
-        total_charges_numeric = pd.to_numeric(data['TotalCharges'], errors='coerce').dropna()
-        plt.figure(figsize=(10, 6))
-        total_charges_plot = sns.histplot(total_charges_numeric, bins=20, kde=True, color='salmon')
-        total_charges_plot.set_title('Total Charges Distribution')
-        total_charges_plot.set_xlabel('Total Charges')
-        total_charges_plot.set_ylabel('Frequency')
-        st.pyplot(fig=total_charges_plot.figure)
+    # Add more charts for other features...
 
 # Function to perform Exploratory Data Analysis (EDA)
 def perform_eda(data):
@@ -122,31 +80,41 @@ def calculate_kpis(data):
     # Add KPI calculation code here
     # You can calculate churn rate, average revenue, etc.
 
-# Load data from the database
-conn = initialize_connection()
-
-# Title of the dashboard
-st.title('Telco Churn Analysis')
-
-# Add selectbox to choose between EDA and KPIs
-selected_analysis = st.selectbox('Select Analysis Type', ['Exploratory Data Analysis (EDA)', 'Key Performance Indicators (KPIs)'])
-
-# Add selectbox to choose dataset
-selected_dataset = st.selectbox('Select Dataset', ['LP2_Telco_churn_first_3000', 'Telco-churn-last-2000.xlsx', 'LP2_Telco-churn-second-2000.csv'])
-
-if selected_dataset == 'LP2_Telco_churn_first_3000':
-    # Load data from the first dataset
-    data = query_database("SELECT gender, tenure, Contract, PaymentMethod, MonthlyCharges, TotalCharges FROM LP2_Telco_churn_first_3000")
+# Check if the user is logged in
+if 'name' not in st.session_state:
+    st.error("You need to log in to access this page.")
 else:
-    # Load data from the selected file
-    file_path = f"data/{selected_dataset}"
-    data = load_dataset(file_path)
+    # Load data from the database
+    conn = initialize_connection()
 
-# Perform the selected analysis
-if selected_analysis == 'Exploratory Data Analysis (EDA)':
-    perform_eda(data)
-else:
-    calculate_kpis(data)
+    # Add logout button to the sidebar
+    with st.sidebar:
+        st.title("Logout")
+        if st.button("Logout"):
+            del st.session_state["name"]
 
-# Display visualizations (always shown regardless of the selected analysis)
-display_visualizations(data)
+    # Title of the dashboard
+    st.title('Telco Churn Analysis')
+
+    # Add selectbox to choose between EDA and KPIs
+    selected_analysis = st.selectbox('Select Analysis Type', ['Exploratory Data Analysis (EDA)', 'Key Performance Indicators (KPIs)'])
+
+    # Add selectbox to choose dataset
+    selected_dataset = st.selectbox('Select Dataset', ['LP2_Telco_churn_first_3000', 'Telco-churn-last-2000.xlsx', 'LP2_Telco-churn-second-2000.csv'])
+
+    if selected_dataset == 'LP2_Telco_churn_first_3000':
+        # Load data from the first dataset
+        data = query_database("SELECT gender, tenure, Contract, PaymentMethod, MonthlyCharges, TotalCharges FROM LP2_Telco_churn_first_3000")
+    else:
+        # Load data from the selected file
+        file_path = f"data/{selected_dataset}"
+        data = load_dataset(file_path)
+
+    # Perform the selected analysis
+    if selected_analysis == 'Exploratory Data Analysis (EDA)':
+        perform_eda(data)
+    else:
+        calculate_kpis(data)
+
+    # Display visualizations (always shown regardless of the selected analysis)
+    display_visualizations(data)
