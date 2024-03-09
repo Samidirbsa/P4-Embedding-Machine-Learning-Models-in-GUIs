@@ -5,7 +5,7 @@ import os
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-
+import datetime
 st.set_page_config(
     page_title='Predict Page',
     page_icon=':',
@@ -139,7 +139,8 @@ def predict():
         })
         st.session_state['df'] = input_features
         st.form_submit_button('Submit', on_click=make_prediction, kwargs=dict(model=model, encoder=encoder))
-   
+    
+ 
 def save_prediction_to_csv(df, prediction, model_name):
     churn_label = "Churn" if prediction[0] == 1 else "Not Churn"
     
@@ -168,6 +169,8 @@ def save_prediction_to_csv(df, prediction, model_name):
         'Churn': churn_label
     })
     
+    df['Prediction Time']=datetime.date.today()
+    df['Model Used']= st.session_state['selected_model']
     # Save to CSV file
     prediction_df.to_csv('data/history.csv', mode='a', header=not os.path.exists('data/history.csv'), index=False)
 
