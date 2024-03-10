@@ -2,13 +2,13 @@
 Embedding Machine Learning models into a user-friendly interface such as Streamlit for use by third party stakeholders who don't have the technical knowledge to read a Jupyter notebook.
 
 <div align="center">
-  <h1><b>Attrition Meter</b></h1>
+  <h1><b>Embedding-Machine-Learning-Models-in-GUIs</b></h1>
 </div>
 
 ## 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [Attrition Meter](#attrition-meter)
+- [Embedding-Machine-Learning-Models-in-GUIs](#Embedding-Machine-Learning-Models-in-GUIs)
   - [🛠 Built With](#-built-with)
     - [Tech Stack](#tech-stack)
   - [Key Features](#key-features)
