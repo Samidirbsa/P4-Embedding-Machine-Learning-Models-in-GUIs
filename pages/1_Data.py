@@ -6,32 +6,37 @@ st.title('VODAFONE CLASSIFICATION AND PREDICTING CUSTOMER CHURN')
 
 # Function to initialize database connection
 def initialize_connection():
-    return pyodbc.connect(
-        "DRIVER={SQL Server};SERVER="
-        + st.secrets["SERVER"]
-        +";DATABASE="
-        + st.secrets["DATABASE"]
-        +";UID="
-        + st.secrets["UID"]
-        +";PWD="
-        + st.secrets["PWD"]
-    )
+    try:
+        conn = pyodbc.connect(
+            "DRIVER={SQL Server};SERVER="
+            + st.secrets["SERVER"]
+            + ";DATABASE="
+            + st.secrets["DATABASE"]
+            + ";UID="
+            + st.secrets["UID"]
+            + ";PWD="
+            + st.secrets["PWD"]
+        )
+        return conn
+    except pyodbc.Error as e:
+        st.error(f"Error connecting to SQL Server: {e}")
+        return None
 
 # Function to query database
-def query_database(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        rows = cur.fetchall()
-        df = pd.DataFrame.from_records(data=rows, columns=[column[0] for column in cur.description])
-    return df
+def query_database(query, conn):
+    try:
+        with conn.cursor() as cur:
+            cur.execute(query)
+            rows = cur.fetchall()
+            df = pd.DataFrame.from_records(data=rows, columns=[column[0] for column in cur.description])
+        return df
+    except pyodbc.Error as e:
+        st.error(f"Error querying database: {e}")
+        return None
 
-# Check if the user is logged in
-if 'name' not in st.session_state:
-    st.error("You need to log in to access this page.")
-else:
-    # Establish database connection
-    conn = initialize_connection()
-
+# Establish database connection
+conn = initialize_connection()
+if conn:
     with st.sidebar:
         st.title("Logout")
         if st.button("Logout"):
@@ -43,13 +48,13 @@ else:
     @st.cache_data()
     def select_all_features():
         query = "SELECT * FROM LP2_Telco_churn_first_3000"
-        df = query_database(query)
+        df = query_database(query, conn)
         return df
 
     @st.cache_data()
     def select_numeric_features():
         query = "SELECT * FROM LP2_Telco_churn_first_3000"
-        df = query_database(query)
+        df = query_database(query, conn)
         numeric_df = df.select_dtypes(include=['number'])
         return numeric_df
 
@@ -66,4 +71,5 @@ else:
     elif selected_option == "Numeric features":
         data = select_numeric_features()
 
-    st.dataframe(data)
+    if data is not None:
+        st.dataframe(data)
