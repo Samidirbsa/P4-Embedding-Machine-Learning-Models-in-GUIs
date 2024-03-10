@@ -17,20 +17,32 @@ def clear_history():
         st.warning("History is already empty.")
 
 def main():
-    st.title('History Page')
-    
-    # Load history data
-    history_df = load_history()
-    
-    # Display history data if available
-    if not history_df.empty:
-        st.write(history_df)
+    # Check if the user is logged in
+    if 'name' not in st.session_state:
+        st.error("You need to log in to access this page.")
     else:
-        st.warning("History is empty.")
-    
-    # Add a clear button
-    if st.button('Clear History'):
-        clear_history()
+        st.title('History Page')
+        
+        # Load history data
+        history_df = load_history()
+        
+        # Display history data if available
+        if not history_df.empty:
+            st.write(history_df)
+        else:
+            st.warning("History is empty.")
+        
+        # Add a clear button
+        if st.button('Clear History'):
+            clear_history()
+        
+        # Add logout button
+        else:
+            with st.sidebar:
+                st.title("Logout")
+                if st.button("Logout"):
+                    del st.session_state["name"]
+                    st.success('You have been logged out successfully.')
 
 if __name__ == '__main__':
     main()

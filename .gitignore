@@ -1,2 +1,3 @@
 virtual_env/
 .streamlit/
+config.yaml
