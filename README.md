@@ -67,7 +67,7 @@ Embedding Machine Learning models into a user-friendly interface such as Streaml
 - **View proprietary data loaded in real-time from the remote server**
 - **Predictions are saved for further analysis in the future, and users can view the history of their prediction input values**
 
-![image](https://github.com/coderacheal/Attrition-Meter/assets/97846040/eb717bf3-d42b-4005-8080-276b69f08167)
+![image](https://github.com/Samidirbsa/P4-Embedding-Machine-Learning-Models-in-GUIs/tree/main/assets)
 
 ## 💻 Getting Started
 
