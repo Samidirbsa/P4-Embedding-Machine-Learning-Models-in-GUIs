@@ -135,16 +135,14 @@ def calculate_kpis(data):
     
     total_revenue = data['TotalCharges'].sum()
 
-    # Display KPIs
-    st.write(f"Total Customers: {total_customers}")
-    st.write(f"Average Tenure (in months): {average_tenure:.2f}")
-    st.write("Contract Distribution:")
-    st.write(contract_distribution)
-    st.write("Payment Method Distribution:")
-    st.write(payment_method_distribution)
-    st.write(f"Average Monthly Charges: ${average_monthly_charges:.2f}")
-    st.write(f"Total Revenue: ${total_revenue:.2f}")
-# Check if the user is logged in
+    # Create a DataFrame to hold KPIs
+    kpi_data = {
+        'KPI Name': ['Total Customers', 'Average Tenure (in months)', 'Contract Distribution', 'Payment Method Distribution', 'Average Monthly Charges', 'Total Revenue'],
+        'Value': [total_customers, f"{average_tenure:.2f}", contract_distribution, payment_method_distribution, f"${average_monthly_charges:.2f}", f"${total_revenue:.2f}"]
+    }
+    kpi_df = pd.DataFrame(kpi_data)
+   
+    st.table(kpi_df)
 if 'name' not in st.session_state:
     st.error("You need to log in to access this page.")
 else:

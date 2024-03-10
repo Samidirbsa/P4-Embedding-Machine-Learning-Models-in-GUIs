@@ -19,7 +19,7 @@ def layout_for_logged_in_users(username):
     # Add content for logged-in users here
 
     # Display Attrition Insight content
-    st.write("""
+    st.markdown("""
     Attrition Insight is a Machine Learning application that predicts the likelihood of an employee to leave the company based on various demographic and job-related factors.
 
     **Key Features**
@@ -37,7 +37,7 @@ def layout_for_logged_in_users(username):
     ```
     # activate virtual environment
     env/scripts/activate
-    streamlit run 1_🏠_Home.py
+    streamlit run 1_Home.py
     ```
 
     **Machine Learning Integration**
@@ -48,7 +48,6 @@ def layout_for_logged_in_users(username):
     **Need Help?**
     For collaborations contact me at samuel47dribsa@gmail.com.
     """)
-
 def authenticate(username, password):
     if username in config['credentials']['usernames']:
         stored_password = config['credentials']['usernames'][username]['password']
