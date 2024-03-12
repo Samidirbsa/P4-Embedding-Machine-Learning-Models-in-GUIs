@@ -31,6 +31,31 @@ data = read_csv_from_url(csv_url)
 if data is not None:
     st.title("Data Page")
     st.write("This is the data page.")
+
+    @st.cache_data()
+    def select_all_features(df):
+        return df
+
+    @st.cache_data()
+    def select_numeric_features(df):
+        numeric_df = df.select_dtypes(include=['number'])
+        return numeric_df
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        selected_option = st.selectbox("Select type of features", options=['All features', 'Numeric features'], key="selected_columns")
+
+    with col2:
+        pass
+
+    if selected_option == "All features":
+        data_to_display = select_all_features(data)
+    elif selected_option == "Numeric features":
+        data_to_display = select_numeric_features(data)
+
+    st.dataframe(data_to_display)
+
     st.write("Description of Columns:")
     column_description = {
         'Gender': 'Whether the customer is a male or a female',
@@ -56,29 +81,3 @@ if data is not None:
     }
     for column, description in column_description.items():
         st.write(f"- **{column}**: {description}")
-
-    st.write("This dataset contains information about telecommunications customers and their churn behavior.")
-
-    @st.cache_data()
-    def select_all_features(df):
-        return df
-
-    @st.cache_data()
-    def select_numeric_features(df):
-        numeric_df = df.select_dtypes(include=['number'])
-        return numeric_df
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        selected_option = st.selectbox("Select type of features", options=['All features', 'Numeric features'], key="selected_columns")
-
-    with col2:
-        pass
-
-    if selected_option == "All features":
-        data_to_display = select_all_features(data)
-    elif selected_option == "Numeric features":
-        data_to_display = select_numeric_features(data)
-
-    st.dataframe(data_to_display)
