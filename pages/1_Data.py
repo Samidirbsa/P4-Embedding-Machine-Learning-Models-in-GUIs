@@ -1,28 +1,32 @@
 import streamlit as st
 import pandas as pd
+import requests
+from io import StringIO
 
 st.title('VODAFONE CLASSIFICATION AND PREDICTING CUSTOMER CHURN')
 if 'name' not in st.session_state:
     st.error("You need to log in to access this page.")
 
-# Function to read CSV files
-def read_csv(file_path):
+# Function to read CSV files from URL
+def read_csv_from_url(url):
     try:
-        df = pd.read_csv(file_path)
-        return df
-    except FileNotFoundError:
-        st.error("CSV file not found at the specified location.")
+        response = requests.get(url)
+        if response.status_code == 200:
+            csv_data = response.text
+            df = pd.read_csv(StringIO(csv_data))
+            return df
+        else:
+            st.error("Failed to download CSV file from the specified URL.")
+            return None
+    except Exception as e:
+        st.error(f"Error occurred while downloading CSV file: {e}")
         return None
 
-# Define the path to the new CSV file
-csv_file_path = r'C:\Users\Sami\OneDrive\GitHUB\P4-Embedding-Machine-Learning-Models-in-GUIs\data\LP2_Telco-churn-second-2000.csv'
+# Define the URL to the CSV file on GitHub
+csv_url = 'https://github.com/Samidirbsa/P4-Embedding-Machine-Learning-Models-in-GUIs/raw/main/data/LP2_Telco-churn-second-2000.csv'
 
-# Read the new CSV file
-@st.cache_data()
-def get_data(file_path):
-    return read_csv(file_path)
-
-data = get_data(csv_file_path)
+# Read the CSV file from the URL
+data = read_csv_from_url(csv_url)
 
 if data is not None:
     st.title("Data Page")
