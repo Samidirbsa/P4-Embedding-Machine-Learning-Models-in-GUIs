@@ -1,60 +1,39 @@
 import streamlit as st
-import pyodbc
 import pandas as pd
 
 st.title('VODAFONE CLASSIFICATION AND PREDICTING CUSTOMER CHURN')
+if 'name' not in st.session_state:
+    st.error("You need to log in to access this page.")
 
-# Function to initialize database connection
-def initialize_connection():
+# Function to read CSV files
+def read_csv(file_path):
     try:
-        conn = pyodbc.connect(
-            "DRIVER={SQL Server};SERVER="
-            + st.secrets["SERVER"]
-            + ";DATABASE="
-            + st.secrets["DATABASE"]
-            + ";UID="
-            + st.secrets["UID"]
-            + ";PWD="
-            + st.secrets["PWD"]
-        )
-        return conn
-    except pyodbc.Error as e:
-        st.error(f"Error connecting to SQL Server: {e}")
-        return None
-
-# Function to query database
-def query_database(query, conn):
-    try:
-        with conn.cursor() as cur:
-            cur.execute(query)
-            rows = cur.fetchall()
-            df = pd.DataFrame.from_records(data=rows, columns=[column[0] for column in cur.description])
+        df = pd.read_csv(file_path)
         return df
-    except pyodbc.Error as e:
-        st.error(f"Error querying database: {e}")
+    except FileNotFoundError:
+        st.error("CSV file not found at the specified location.")
         return None
 
-# Establish database connection
-conn = initialize_connection()
-if conn:
-    with st.sidebar:
-        st.title("Logout")
-        if st.button("Logout"):
-            del st.session_state["name"]
+# Define the path to the new CSV file
+csv_file_path = r'C:\Users\Sami\OneDrive\GitHUB\P4-Embedding-Machine-Learning-Models-in-GUIs\data\LP2_Telco-churn-second-2000.csv'
 
+# Read the new CSV file
+@st.cache_data()
+def get_data(file_path):
+    return read_csv(file_path)
+
+data = get_data(csv_file_path)
+
+if data is not None:
     st.title("Data Page")
     st.write("This is the data page.")
 
     @st.cache_data()
-    def select_all_features():
-        query = "SELECT * FROM LP2_Telco_churn_first_3000"
-        df = query_database(query, conn)
+    def select_all_features(df):
         return df
 
     @st.cache_data()
-    def select_numeric_features():
-        query = "SELECT * FROM LP2_Telco_churn_first_3000"
-        df = query_database(query, conn)
+    def select_numeric_features(df):
         numeric_df = df.select_dtypes(include=['number'])
         return numeric_df
 
@@ -67,9 +46,8 @@ if conn:
         pass
 
     if selected_option == "All features":
-        data = select_all_features()
+        data_to_display = select_all_features(data)
     elif selected_option == "Numeric features":
-        data = select_numeric_features()
+        data_to_display = select_numeric_features(data)
 
-    if data is not None:
-        st.dataframe(data)
+    st.dataframe(data_to_display)
