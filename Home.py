@@ -20,6 +20,13 @@ def layout_for_logged_in_users(username):
 
     # Display Attrition Insight content
     st.markdown("""
+    <style>
+    body {
+        background-image: url('assets/Customer-Churn.png');
+        background-size: cover;
+    }
+    </style>
+
     Attrition Insight is a Machine Learning application that predicts the likelihood of an employee to leave the company based on various demographic and job-related factors.
 
     **Key Features**
@@ -48,6 +55,7 @@ def layout_for_logged_in_users(username):
     **Need Help?**
     For collaborations contact me at samuel47dribsa@gmail.com.
     """)
+
 def authenticate(username, password):
     if username in config['credentials']['usernames']:
         stored_password = config['credentials']['usernames'][username]['password']
@@ -83,3 +91,7 @@ else:
     st.write("Test Accounts:")
     for username in config['credentials']['usernames']:
         st.write(f"Username: {username}, Password: {config['credentials']['usernames'][username]['password']}")
+    # Display background image
+    st.image('assets/Customer-Churn.png', use_column_width=True)
+
+    
