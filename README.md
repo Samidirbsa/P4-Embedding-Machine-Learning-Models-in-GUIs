@@ -113,7 +113,7 @@ sh
 Copy code
   streamlit run Home.py
 A webpage opens up to view the app
-Login to the app with username=coderacheal and password:abc
+Login to the app with username=Samuelapp and password:123
 Finally test a prediction by clicking on the predictions page
 Note: Users may not be able to access the View Data page as the secrets file is not checked into git
 👥 Authors
