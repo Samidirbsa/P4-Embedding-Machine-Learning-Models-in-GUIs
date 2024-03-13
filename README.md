@@ -83,63 +83,79 @@ In order to run this project, you need:
 Clone this repository to your desired folder:
 
 ```sh
-  cd my-folder
-  git clone https://github.com/Samidirbsa/P4-Embedding-Machine-Learning-Models-in-GUIs.git
+cd my-folder
+git clone https://github.com/Samidirbsa/P4-Embedding-Machine-Learning-Models-in-GUIs.git
+```
 Change into the cloned repository
 
-sh
-Copy code
-  cd P4-Embedding-Machine-Learning-Models-in-GUIs
+```sh
+cd P4-Embedding-Machine-Learning-Models-in-GUIs
+```
 Create a virtual environment
 
-sh
-Copy code
-  python -m venv env
+```sh
+python -m venv env
+```
 Activate the virtual environment
 
-sh
-Copy code
-  env/Scripts/activate
-Install
+```sh
+env/Scripts/activate
+```
+
+### Install
+
 Here, you need to recursively install the packages in the requirements.txt file using the command below
 
-sh
-Copy code
-  pip install -r requirements.txt
-Usage
+```sh
+pip install -r requirements.txt
+```
+
+### Usage
 To run the project, execute the following command:
 
-sh
-Copy code
-  streamlit run Home.py
-A webpage opens up to view the app
-Login to the app with username=Samuelapp and password:123
-Finally test a prediction by clicking on the predictions page
+```sh
+streamlit run Home.py
+```
+
+A webpage opens up to view the app.
+
+Login to the app with username `Samuelapp` and password `123` .
+
+Finally test a prediction by clicking on the predictions page.
+
 Note: Users may not be able to access the View Data page as the secrets file is not checked into git
-👥 Authors
+
+## 👥 Authors
+
 🕵🏽‍♀️ Samuel Dribsa
 
 GitHub: https://github.com/Samidirbsa
+
 LinkedIn: https://www.linkedin.com/in/samuel-dribsa/
-🔭 Future Features
-Add a front end application for users
-🤝 Contributing
+
+## 🔭 Future Features
+
+Add a front end application for users.
+
+
+## 🤝 Contributing
+
 Contributions, issues, and feature requests are welcome!
 
 Feel free to check the issues page.
 
-⭐️ Show your support
+
+## ⭐️ Show your support
+
 If you like this project kindly show some love, give it a 🌟 STAR 🌟
 
-🙏 Acknowledgments
-I would like to thank all the free available resource made available online
 
-📝 License
+## 🙏 Acknowledgments
+
+I would like to thank all the free available resource made available online.
+
+
+## 📝 License
+
 This project is MIT licensed.
-
-css
-Copy code
-
-
-
 
