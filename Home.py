@@ -20,13 +20,6 @@ def layout_for_logged_in_users(username):
 
     # Display Attrition Insight content
     st.markdown("""
-    <style>
-    body {
-        background-image: url('assets/Customer-Churn.png');
-        background-size: cover;
-    }
-    </style>
-
     Attrition Insight is a Machine Learning application that predicts the likelihood of an employee to leave the company based on various demographic and job-related factors.
 
     **Key Features**
