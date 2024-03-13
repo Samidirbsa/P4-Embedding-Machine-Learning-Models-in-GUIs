@@ -1,37 +1,11 @@
 import streamlit as st
 import pandas as pd
-import pyodbc
 import seaborn as sns
 import matplotlib.pyplot as plt
-from PIL import Image
 
-# Function to connect to the database
-@st.cache_resource(show_spinner='Connecting to Database......')
-def initialize_connection():
-    connection = pyodbc.connect(
-        "DRIVER={SQL Server};SERVER="
-        + st.secrets["SERVER"]
-        +";DATABASE="
-        + st.secrets["DATABASE"]
-        +";UID="
-        + st.secrets["UID"]
-        +";PWD="
-        + st.secrets["PWD"]
-    )
-    return connection
-
-# Function to execute SQL query and return DataFrame
-@st.cache_data()
-def query_database(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        rows = cur.fetchall()
-        df = pd.DataFrame.from_records(data=rows, columns=[column[0] for column in cur.description])
-    return df
-
-# Function to load dataset from file
-def load_dataset(file_path):
-    df = pd.read_csv(file_path) if file_path.endswith('.csv') else pd.read_excel(file_path)
+# Function to load dataset from CSV file URL
+def load_dataset_from_csv(csv_url):
+    df = pd.read_csv(csv_url)
     return df
 
 # Function to display visualizations for each feature
@@ -143,35 +117,24 @@ def calculate_kpis(data):
     kpi_df = pd.DataFrame(kpi_data)
    
     st.table(kpi_df)
-if 'name' not in st.session_state:
-    st.error("You need to log in to access this page.")
-else:
-    # Load data from the database
-    conn = initialize_connection()
 
-    # Title of the dashboard
-    st.title('Telco Churn Analysis')
+# Title of the dashboard
+st.title('Telco Churn Analysis')
 
-    # Add selectbox to choose between EDA and KPIs
-    selected_analysis = st.selectbox('Select Analysis Type', ['Exploratory Data Analysis (EDA)', 'Key Performance Indicators (KPIs)'])
+# Load data from the CSV file
+csv_url = 'https://raw.githubusercontent.com/Samidirbsa/P4-Embedding-Machine-Learning-Models-in-GUIs/main/data/df_churn_first_3000.csv'
+data = load_dataset_from_csv(csv_url)
 
-    # Add selectbox to choose dataset
-    selected_dataset = st.selectbox('Select Dataset', ['LP2_Telco_churn_first_3000', 'Telco-churn-last-2000.xlsx', 'LP2_Telco-churn-second-2000.csv'])
+# Add selectbox to choose between EDA and KPIs
+selected_analysis = st.selectbox('Select Analysis Type', ['Exploratory Data Analysis (EDA)', 'Key Performance Indicators (KPIs)'])
 
-    if selected_dataset == 'LP2_Telco_churn_first_3000':
-        # Load data from the first dataset
-        data = query_database("SELECT gender, tenure, Contract, PaymentMethod, MonthlyCharges, TotalCharges FROM LP2_Telco_churn_first_3000")
-    else:
-        # Load data from the selected file
-        file_path = f"data/{selected_dataset}"
-        data = load_dataset(file_path)
-
-    # Perform the selected analysis
-    if selected_analysis == 'Exploratory Data Analysis (EDA)':
-        perform_eda(data)
+# Perform the selected analysis
+if selected_analysis == 'Exploratory Data Analysis (EDA)':
+ display_visualizations(data)
         
-    # Display visualizations (always shown regardless of the selected analysis)
-        display_visualizations(data)
-    else:
-        calculate_kpis(data)
+# Display visualizations (always shown regardless of the selected analysis)
 
+
+# Perform KPI calculation if selected
+if selected_analysis == 'Key Performance Indicators (KPIs)':
+    calculate_kpis(data)
